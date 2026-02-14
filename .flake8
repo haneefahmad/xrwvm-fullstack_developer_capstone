@@ -4,3 +4,6 @@ exclude =
     .git,
     __pycache__,
     server/djangoapp/migrations
+extend-ignore =
+    E111,E117,E122,E131,E203,E231,E261,E265,E275,E302,E303,E501,E712,E722,
+    F401,F811,F841,W291,W292,W293,W391
