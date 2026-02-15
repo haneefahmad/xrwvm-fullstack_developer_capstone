@@ -1,86 +1,83 @@
-.navcontainer{
-  display: flex;
-  flex: 1;
-
-  flex-direction: row;
-  margin: auto;
-  margin-top: 2%;
-  background-color: rgb(97, 64, 128);
-  align-items: flex-start;
-}
-
-.navitems{
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
-  flex: 1;
-  justify-content: flex-start;
-  justify-self: center;
-}
-
-.nav_item{
-  margin-left:15px;
-  font-size: 20px;
-  color: azure;
-  align-self: center;
-}
-
-.input_panel {
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
-  flex: 1;
-  justify-content: flex-end;
-  justify-self: center;
-}
-
-.input_field{
-  height:40px;
-  width:200px; 
-  font-size: medium;
-  margin:.5cm;
-}
-
-
-.action_button{
-  cursor: pointer;
-  font-size: large;
-  color: rgb(97, 64, 128);
-  border-radius: 10px;
-  height:40px;
-  padding-left:.5cm;
-  padding-right: .5cm;
-  margin: .5cm;
-}
-
-.submit:hover {
-  background-color: wheat;
-}
-
-.small_header{
-  font: 30px sans-serif;
-  color:azure;
-  margin: .5cm;
-}
-
-.username{
-  font: 30px sans-serif;
-  color:azure;
-  margin: .5cm;
-  justify-content: 'flex-end';
-  align-self:flex-end;
-}
-
 .login_panel {
   display: flex;
   flex-direction: column;
-  margin:auto;
-  margin: 0 auto;
-  width: 50%; 
-  padding: 20px;
-  flex: 1;
-  justify-content:center;
-  align-items: center;
-  vertical-align: middle;
-  
+  margin: 30px auto;
+  width: min(92%, 520px);
+  padding: 24px;
+  border-radius: 14px;
+  border: 1px solid #2b3a52;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.45);
+  background: linear-gradient(180deg, #1b2436 0%, #111827 100%);
+  gap: 12px;
+  color: #e2e8f0;
+}
+
+.auth_title {
+  margin: 0 0 0.25rem;
+  color: #f8fafc;
+  text-align: center;
+}
+
+.auth_field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.auth_field label {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.login_panel .input_field {
+  height: 42px;
+  width: 100%;
+  font-size: 0.98rem;
+  padding: 0 12px;
+  border: 1px solid #3b4f6f;
+  border-radius: 9px;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.login_panel .input_field:focus {
+  outline: none;
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+.auth_actions {
+  display: flex;
+  gap: 0.65rem;
+  justify-content: center;
+  margin-top: 0.35rem;
+}
+
+.action_button {
+  cursor: pointer;
+  font-size: 1rem;
+  color: #eff6ff;
+  border-radius: 10px;
+  height: 40px;
+  padding: 0 0.95rem;
+  border: 1px solid #60a5fa;
+  background: #1e3a8a;
+}
+
+.action_button:hover {
+  background-color: #1d4ed8;
+}
+
+.loginlink {
+  margin-top: 8px;
+  text-decoration: none;
+  color: #93c5fd;
+  font-weight: 600;
+  text-align: center;
+}
+
+.loginlink:hover {
+  text-decoration: underline;
 }

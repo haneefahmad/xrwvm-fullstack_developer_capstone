@@ -48,30 +48,42 @@ const Login = ({ onClose }) => {
           className='modalContainer'
         >
           <form className='login_panel' onSubmit={login}>
-            <div>
-              <span className='input_field'>Username </span>
+            <h2 className='auth_title'>Login</h2>
+
+            <div className='auth_field'>
+              <label htmlFor='username'>Username</label>
               <input
+                id='username'
                 type='text'
                 name='username'
-                placeholder='Username'
+                placeholder='Enter username'
                 className='input_field'
                 onChange={(e) => setUserName(e.target.value)}
               />
             </div>
-            <div>
-              <span className='input_field'>Password </span>
+
+            <div className='auth_field'>
+              <label htmlFor='password'>Password</label>
               <input
+                id='password'
                 name='psw'
                 type='password'
-                placeholder='Password'
+                placeholder='Enter password'
                 className='input_field'
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div>
+
+            <div className='auth_actions'>
               <input className='action_button' type='submit' value='Login' />
-              <input className='action_button' type='button' value='Cancel' onClick={() => setOpen(false)} />
+              <input
+                className='action_button'
+                type='button'
+                value='Cancel'
+                onClick={() => setOpen(false)}
+              />
             </div>
+
             <a className='loginlink' href='/register'>
               Register Now
             </a>

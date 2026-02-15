@@ -1,80 +1,123 @@
-img{
+:root {
+  --bg: #0b1220;
+  --bg-soft: #111b2f;
+  --surface: #111827;
+  --surface-2: #1b2436;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --primary-900: #020617;
+  --primary-800: #0f172a;
+  --primary-700: #1e3a8a;
+  --accent-500: #38bdf8;
+  --border: #2b3a52;
+  --shadow: 0 10px 28px rgba(2, 6, 23, 0.45);
+  --radius: 14px;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at top, #16223c 0%, var(--bg) 55%);
+}
+
+img {
   width: 60%;
   align-self: center;
 }
 
-.card{
-  border: rgb(103, 102, 105) 3px solid;
-  display: flex;  
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface) 100%);
+  box-shadow: var(--shadow);
+  display: flex;
   flex-direction: column;
-  margin-left:5%;
-  margin-right:5%;
+  margin-left: 5%;
+  margin-right: 5%;
   margin-top: 1%;
   margin-bottom: 1%;
+  overflow: hidden;
 }
 
-.row{
-  display: flex;  
+.row {
+  display: flex;
   flex: 1;
   flex-direction: row;
   margin: auto;
   margin-top: 1%;
   justify-content: center;
-  padding:20px;
+  padding: 20px;
 }
 
-.container{
+.container {
   justify-content: center;
 }
-.details{
-  font-size: 20px;
-  color: rgb(97, 64, 128);
-  padding:20px;
+
+.details {
+  font-size: 18px;
+  color: #93c5fd;
+  padding: 20px;
 }
 
-.title{
+.title {
   font-size: 20px;
-  background-color: rgb(97, 64, 128);
-  color: white;
+  font-weight: 700;
+  background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
+  color: #ffffff;
   text-align: center;
-  margin:20px;
-  padding:5px;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
 }
 
-.homepage_links{
-  color:  rgb(97, 64, 128);
-  padding: 25%;
-  font-size: larger;
-  }
+.homepage_links {
+  color: #dbeafe;
+  padding: 0.55rem 0.85rem;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
 
-.loginlink{
+.homepage_links:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+.loginlink {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  gap: 6px;
 }
 
-.banner{
+.banner {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex:1
+  flex: 1;
+  padding: 1rem 1.25rem 1.4rem 1.25rem;
+  color: var(--text);
 }
 
 .form_panel {
-  padding:2%;
+  padding: 2%;
   display: flex;
   flex-direction: column;
-  border-radius: 50px;
-  text-align:center;
-  box-shadow: 2px 2px 2px 3px #999;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
   margin: auto;
   min-width: 350px;
   width: 80%;
-  margin-top:3%
+  margin-top: 3%;
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--border);
 }
 
-.navitems{
+.navitems {
   display: flex;
   flex-direction: row;
   padding: 20px;
@@ -83,43 +126,159 @@ img{
   justify-self: center;
 }
 
-.nav_item{
-  margin-left:15px;
-  font-size: 20px;
-  color: black;
+.nav_item {
+  margin-left: 8px;
+  font-size: 16px;
+  color: #dbeafe;
   align-self: center;
+  text-decoration: none;
+  padding: 0.45rem 0.7rem;
+  border-radius: 10px;
+  font-weight: 600;
 }
 
-.username{
-  font: 30px sans-serif;
-  color:black;
-  justify-content: 'flex-end';
-  align-self:flex-end;
-  vertical-align: middle;
+.nav_item:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+.nav-cta {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.username,
+.nav-username {
+  font: 600 1rem "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #e2e8f0;
+  align-self: center;
 }
 
 .input_panel {
   display: flex;
   flex-direction: row;
-  padding: 20px;
+  padding: 12px;
   flex: 1;
-  justify-content:flex-end;
-  align-items: flex-end;
+  justify-content: flex-end;
+  align-items: center;
   vertical-align: middle;
+  gap: 8px;
 }
 
-.small_header{
-  font: 30px sans-serif;
-  color:black;
-  margin: .5cm;
+.small_header {
+  font: 600 1.6rem "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #e2e8f0;
+  margin: 0.5cm;
 }
 
 .img_icon {
   align-self: center;
-    width:40px;
-    background-color:#0C9;
-    color:#FFF;
-    border-radius:50px;
-    text-align:center;
-    box-shadow: 2px 2px 3px #999;  
+  width: 40px;
+  background: linear-gradient(145deg, #1d4ed8, #0ea5e9);
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.main-navbar {
+  background: linear-gradient(110deg, var(--primary-900) 0%, var(--primary-800) 48%, var(--primary-700) 100%);
+  min-height: 80px;
+  margin: 14px;
+  border-radius: 14px;
+  box-shadow: 0 10px 26px rgba(2, 6, 23, 0.55);
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.brand-title {
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  margin: 0;
+  padding-right: 1.25rem;
+}
+
+.main-nav-link {
+  color: #dbeafe !important;
+  font-weight: 600;
+  padding: 0.45rem 0.8rem !important;
+  border-radius: 10px;
+}
+
+.main-nav-link:hover,
+.main-nav-link.active {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+@media (max-width: 1024px) {
+  .card {
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    margin-left: 2%;
+    margin-right: 2%;
+    border-radius: 12px;
+  }
+
+  .main-navbar {
+    margin: 8px;
+    min-height: 70px;
+    border-radius: 12px;
+  }
+
+  .brand-title {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .input_panel {
+    padding: 8px;
+    gap: 5px;
+  }
+
+  .img_icon {
+    width: 32px;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .brand-title {
+    font-size: 1.45rem;
+  }
+}
+
+/* Contrast fixes for static pages (About/Contact/Home cards) */
+.card,
+.card .card-body,
+.card .card-text,
+.card p,
+.card li,
+.card span {
+  color: #dbe2ee;
+}
+
+.card h3,
+.card h4,
+.card h5,
+.card strong {
+  color: #f8fafc;
+}
+
+/* Keep title chips bright and readable */
+.card .title {
+  color: #ffffff;
+}
+
+.logout-btn {
+  background: transparent;
+  cursor: pointer;
+  line-height: 1;
 }

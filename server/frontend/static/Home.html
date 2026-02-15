@@ -6,26 +6,18 @@
   <link rel="stylesheet" href="static/bootstrap.min.css">
 <script>
 
-const logout = async (e) => {
-    // Build logout URL and Make GET request to logout endpoint
-  let logout_url = window.location.origin+"/djangoapp/logout";
-  const res = await fetch(logout_url, {
-    method: "GET",
-  });
+const logout = (e) => {
+  if (e) e.preventDefault();
 
-  const json = await res.json();
-  if (json) {
-    // Clear session storage and reload page
-    let username = sessionStorage.getItem('username');
-    sessionStorage.removeItem('username');
-    window.location.href = window.location.origin;
-    window.location.reload();
-     // Notify user of logout
-    alert("Logging out "+username+"...") 
-  }
-  else {
-    alert("The user could not be logged out.")
-  }
+  sessionStorage.clear();
+
+  fetch(window.location.origin + '/djangoapp/logout', {
+    method: 'GET',
+    credentials: 'include',
+    keepalive: true,
+  }).finally(() => {
+    window.location.replace('/');
+  });
 };
 
 let checkSession = ()=>{
@@ -34,7 +26,7 @@ let checkSession = ()=>{
   if (curr_user && curr_user !== "") {
     document.getElementById("loginlogout").innerHTML = 
     '<span class="homepage_links">' + curr_user +'</span>' +
-    '<a class="homepage_links" onclick="logout()" href="/">Logout</a>'
+    '<a class="homepage_links" onclick="logout(event)" href="/">Logout</a>'
   } else {
     document.getElementById("loginlogout").innerHTML = 
     '<a class="homepage_links" href="/login">Login</a>'+
@@ -44,22 +36,22 @@ let checkSession = ()=>{
 </script>
 </head>
 <body onload="checkSession()">
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color:mediumspringgreen; height: 1in;">
+<nav class="navbar navbar-expand-lg navbar-dark main-navbar">
   <div class="container-fluid">
-    <h2 style="padding-right: 5%;">Dealerships</h2>
+    <h2 class="brand-title">Dealerships</h2>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" style="font-size: larger;" aria-current="page" href="#">Home</a>
+          <a class="nav-link main-nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="font-size: larger;" href="/about">About Us</a>
+          <a class="nav-link main-nav-link" href="/about">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="font-size: larger;" href="/contact">Contact Us</a>
+          <a class="nav-link main-nav-link" href="/contact">Contact Us</a>
         </li>
       </ul>
       <span class="navbar-text">
@@ -70,11 +62,11 @@ let checkSession = ()=>{
   </div>
 </nav>
 <div style="display: flex;flex-direction: column;">
-<div class="card" style="width: 50%;margin-top: 50px;align-self: center;">
+<div class="card" style="width: min(92%, 760px); margin-top: 40px; align-self: center;">
   <img src="static/car_dealership.jpg" class="card-img-top" alt="...">
   <div class="banner">
     <h5>Welcome to our Dealerships!</h5>
-    <a href="/dealers" class="btn" style="background-color: plum; margin:10px">View Dealerships</a>
+    <a href="/dealers" class="btn" style="background-color: #1d4ed8; color: #fff; margin: 10px; border-radius: 10px;">View Dealerships</a>
   </div>
 </div>
 </div>

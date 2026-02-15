@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../Header/Header';
 import './Dealers.css';
@@ -23,25 +23,25 @@ const SearchCars = () => {
   const [selectedMileage, setSelectedMileage] = useState('All');
   const [selectedPrice, setSelectedPrice] = useState('All');
 
-  const populateMakesAndModels = (carsList, makeValue = 'All') => {
+  const populateMakesAndModels = useCallback((carsList, makeValue = 'All') => {
     const uniqueMakes = Array.from(new Set(carsList.map((car) => car.make))).sort();
     setMakes(uniqueMakes);
 
     const modelSource = makeValue === 'All' ? carsList : carsList.filter((car) => car.make === makeValue);
     const uniqueModels = Array.from(new Set(modelSource.map((car) => car.model))).sort();
     setModels(uniqueModels);
-  };
+  }, []);
 
-  const fetchDealer = async () => {
+  const fetchDealer = useCallback(async () => {
     const res = await fetch(dealer_url, { method: 'GET' });
     const retobj = await res.json();
     if (retobj.status === 200) {
       const dealerObjs = Array.from(retobj.dealer);
       setDealer(dealerObjs[0] || {});
     }
-  };
+  }, [dealer_url]);
 
-  const fetchCars = async () => {
+  const fetchCars = useCallback(async () => {
     const res = await fetch(inventory_url, { method: 'GET' });
     const retobj = await res.json();
     if (retobj.status === 200) {
@@ -53,7 +53,7 @@ const SearchCars = () => {
     } else {
       setMessage('Unable to load cars');
     }
-  };
+  }, [inventory_url, populateMakesAndModels]);
 
   const buildUrl = (overrides = {}) => {
     const make = overrides.make ?? selectedMake;
@@ -73,18 +73,21 @@ const SearchCars = () => {
     return query ? `${inventory_url}?${query}` : inventory_url;
   };
 
-  const setCarsmatchingCriteria = async (url, effectiveMake = selectedMake) => {
-    const res = await fetch(url, { method: 'GET' });
-    const retobj = await res.json();
-    if (retobj.status === 200) {
-      const filteredCars = Array.from(retobj.cars || []);
-      setCars(filteredCars);
-      setMessage(filteredCars.length === 0 ? 'No cars found matching criteria' : '');
-      populateMakesAndModels(allCars, effectiveMake);
-    } else {
-      setMessage('Unable to fetch cars for selected criteria');
-    }
-  };
+  const setCarsmatchingCriteria = useCallback(
+    async (url, effectiveMake = selectedMake) => {
+      const res = await fetch(url, { method: 'GET' });
+      const retobj = await res.json();
+      if (retobj.status === 200) {
+        const filteredCars = Array.from(retobj.cars || []);
+        setCars(filteredCars);
+        setMessage(filteredCars.length === 0 ? 'No cars found matching criteria' : '');
+        populateMakesAndModels(allCars, effectiveMake);
+      } else {
+        setMessage('Unable to fetch cars for selected criteria');
+      }
+    },
+    [allCars, populateMakesAndModels, selectedMake],
+  );
 
   const SearchCarsByMake = async (event) => {
     const makeValue = event.target.value;
@@ -134,17 +137,17 @@ const SearchCars = () => {
   useEffect(() => {
     fetchDealer();
     fetchCars();
-  }, []);
+  }, [fetchCars, fetchDealer]);
 
   return (
-    <div style={{ margin: '20px' }}>
+    <div className='searchcars-shell'>
       <Header />
-      <h1 style={{ color: 'black' }}>Cars at {dealer.full_name}</h1>
+      <h1 className='searchcars-title'>Cars at {dealer.full_name}</h1>
 
-      <div style={{ display: 'flex', gap: '18px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '15px' }}>
+      <div className='search-controls'>
         <label>
           Make
-          <select value={selectedMake} onChange={SearchCarsByMake} style={{ marginLeft: '10px' }}>
+          <select value={selectedMake} onChange={SearchCarsByMake}>
             <option value='All'>-- All --</option>
             {makes.map((make) => (
               <option key={make} value={make}>
@@ -156,7 +159,7 @@ const SearchCars = () => {
 
         <label>
           Model
-          <select value={selectedModel} onChange={SearchCarsByModel} style={{ marginLeft: '10px' }}>
+          <select value={selectedModel} onChange={SearchCarsByModel}>
             <option value='All'>-- All --</option>
             {models.map((model) => (
               <option key={model} value={model}>
@@ -168,7 +171,7 @@ const SearchCars = () => {
 
         <label>
           Year
-          <select value={selectedYear} onChange={SearchCarsByYear} style={{ marginLeft: '10px' }}>
+          <select value={selectedYear} onChange={SearchCarsByYear}>
             <option value='All'>-- All --</option>
             <option value='2021'>2021 or newer</option>
             <option value='2022'>2022 or newer</option>
@@ -181,7 +184,7 @@ const SearchCars = () => {
 
         <label>
           Mileage
-          <select value={selectedMileage} onChange={SearchCarsByMileage} style={{ marginLeft: '10px' }}>
+          <select value={selectedMileage} onChange={SearchCarsByMileage}>
             <option value='All'>-- All --</option>
             <option value='50000'>Under 50000</option>
             <option value='100000'>50000 - 100000</option>
@@ -193,7 +196,7 @@ const SearchCars = () => {
 
         <label>
           Price
-          <select value={selectedPrice} onChange={SearchCarsByPrice} style={{ marginLeft: '10px' }}>
+          <select value={selectedPrice} onChange={SearchCarsByPrice}>
             <option value='All'>-- All --</option>
             <option value='20000'>Under 20000</option>
             <option value='40000'>20000 - 40000</option>
@@ -206,20 +209,20 @@ const SearchCars = () => {
         <button onClick={reset}>Reset</button>
       </div>
 
-      <hr />
+      {message ? <div className='search-message'>{message}</div> : null}
 
-      {message ? <div>{message}</div> : null}
-
-      {cars.map((car, index) => (
-        <div key={`${car.make}-${car.model}-${car.year}-${index}`} style={{ borderBottom: '1px solid lightgray', paddingBottom: '15px', marginBottom: '15px' }}>
-          <h2>
-            {car.make} {car.model}
-          </h2>
-          <p>Year: {car.year}</p>
-          <p>Mileage: {car.mileage}</p>
-          <p>Price: {car.price}</p>
-        </div>
-      ))}
+      <div className='cars-list'>
+        {cars.map((car, index) => (
+          <div key={`${car.make}-${car.model}-${car.year}-${index}`} className='car-card'>
+            <h2>
+              {car.make} {car.model}
+            </h2>
+            <p>Year: {car.year}</p>
+            <p>Mileage: {car.mileage}</p>
+            <p>Price: {car.price}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

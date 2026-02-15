@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './Dealers.css';
 import '../assets/style.css';
@@ -59,7 +59,7 @@ const PostReview = () => {
     }
   };
 
-  const get_dealer = async () => {
+  const get_dealer = useCallback(async () => {
     const res = await fetch(dealer_url, {
       method: 'GET',
     });
@@ -71,9 +71,9 @@ const PostReview = () => {
         setDealer(dealerobjs[0]);
       }
     }
-  };
+  }, [dealer_url]);
 
-  const get_cars = async () => {
+  const get_cars = useCallback(async () => {
     const res = await fetch(carmodels_url, {
       method: 'GET',
     });
@@ -81,22 +81,34 @@ const PostReview = () => {
 
     const carmodelsarr = Array.from(retobj.CarModels);
     setCarmodels(carmodelsarr);
-  };
+  }, [carmodels_url]);
 
   useEffect(() => {
     get_dealer();
     get_cars();
-  }, []);
+  }, [get_cars, get_dealer]);
 
   return (
     <div>
       <Header />
-      <div style={{ margin: '5%' }}>
-        <h1 style={{ color: 'darkblue' }}>{dealer.full_name}</h1>
-        <textarea id='review' cols='50' rows='7' onChange={(e) => setReview(e.target.value)}></textarea>
-        <div className='input_field'>Purchase Date <input type='date' onChange={(e) => setDate(e.target.value)} /></div>
-        <div className='input_field'>
-          Car Make
+      <div className='post-review-page'>
+        <h1>{dealer.full_name}</h1>
+        <textarea
+          className='review-textarea'
+          id='review'
+          cols='50'
+          rows='7'
+          onChange={(e) => setReview(e.target.value)}
+          placeholder='Write your review...'
+        ></textarea>
+
+        <div className='review-field'>
+          <span>Purchase Date</span>
+          <input type='date' value={date} onChange={(e) => setDate(e.target.value)} onInput={(e) => setDate(e.target.value)} required />
+        </div>
+
+        <div className='review-field'>
+          <span>Car Make</span>
           <select name='cars' id='cars' defaultValue='' onChange={(e) => setModel(e.target.value)}>
             <option value='' disabled hidden>
               Choose Car Make and Model
@@ -109,8 +121,9 @@ const PostReview = () => {
           </select>
         </div>
 
-        <div className='input_field'>
-          Car Year <input type='number' onChange={(e) => setYear(e.target.value)} max={currentYear} min={2015} />
+        <div className='review-field'>
+          <span>Car Year</span>
+          <input type='number' onChange={(e) => setYear(e.target.value)} max={currentYear} min={2015} />
         </div>
 
         <div>
@@ -122,4 +135,5 @@ const PostReview = () => {
     </div>
   );
 };
+
 export default PostReview;

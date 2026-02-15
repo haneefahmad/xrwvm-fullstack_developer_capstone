@@ -57,6 +57,7 @@ const Dealers = () => {
             <th>
               <input
                 type='text'
+                className='state-search'
                 placeholder='Search states...'
                 onChange={handleInputChange}
                 onBlur={handleLostFocus}

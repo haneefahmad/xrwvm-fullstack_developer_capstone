@@ -4,66 +4,79 @@
   <link rel="stylesheet" href="/static/bootstrap.min.css">
 </head>
 <div>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
+  <nav class="navbar navbar-expand-lg navbar-dark main-navbar">
     <div class="container-fluid">
-      <h2 style="padding-right: 5%;">Dealerships</h2>
+      <h2 class="brand-title">Dealerships</h2>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
+            <a class="nav-link main-nav-link" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" style="font-size: larger;" href="/about">About Us</a>
+            <a class="nav-link main-nav-link active" href="/about">About Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" style="font-size: larger;" href="/contact">Contact Us</a>
+            <a class="nav-link main-nav-link" href="/contact">Contact Us</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  
-    <div class="card" style="width: 80%;margin: auto; margin-top:5%;">
-      <div class="banner" name="about-header">
-      
-      </div>
-      <div style="display: flex;flex-direction: row; margin:auto">
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
+
+  <div class="card" style="width: 90%; margin: auto; margin-top: 3%; margin-bottom: 3%;">
+    <div class="banner" name="about-header"></div>
+    <div style="padding: 24px;">
+      <h3 style="margin-bottom: 8px;">Meet Our Leadership Team</h3>
+      <p style="margin-bottom: 24px;">
+        Our team combines customer-first service, deep market knowledge, and a passion for helping
+        people find the right car with confidence.
+      </p>
+    </div>
+
+    <div style="display: flex; flex-direction: row; justify-content: center; gap: 16px; flex-wrap: wrap; margin: 0 16px 24px 16px;">
+      <div class="card" style="width: 30%; min-width: 260px;">
+        <img class="card-img-top" src="/static/haneef-ahmad.jpg" alt="Haneef Ahmad" onerror="this.onerror=null;this.src='/static/person.png';">
         <div class="card-body">
-          <p class="title">Person1</p>
-          <p>Person1 Title</p>
-          <p class="card-text">Some text that explains the person1 in about 2 short sentences</p>
-          <p>person1@example.com</p>
+          <p class="title">Haneef Ahmad</p>
+          <p><strong>CEO</strong></p>
+          <p class="card-text">
+            Haneef leads the dealership with a clear vision: transparent pricing, trusted service, and
+            a smooth buying experience from first visit to final handover.
+          </p>
+          <p>haneefahmad@gmail.com</p>
         </div>
       </div>
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
+      <div class="card" style="width: 30%; min-width: 260px;">
+        <img class="card-img-top" src="/static/suga.jpg" alt="Suga" onerror="this.onerror=null;this.src='/static/person.png';">
         <div class="card-body">
-          <p class="title">Person2</p>
-          <p>Person2 Title</p>
-          <p class="card-text">Some text that explains the person2 in about 2 short sentences</p>
-          <p>person2@example.com</p>
+          <p class="title">Suga</p>
+          <p><strong>Dealer 1</strong></p>
+          <p class="card-text">
+            Suga specializes in matching customers with reliable daily drivers and family-friendly
+            options, making every recommendation practical and budget-conscious.
+          </p>
+          <p>suga@gmail.com</p>
         </div>
       </div>
 
-      <div class="card" style="width: 30%;">
-        <img class="card-img-top" src="/static/person.png" alt="Card image">
+      <div class="card" style="width: 30%; min-width: 260px;">
+        <img class="card-img-top" src="/static/jiri.jpg" alt="Jiri" onerror="this.onerror=null;this.src='/static/person.png';">
         <div class="card-body">
-          <p class="title">Person3</p>
-          <p>Person3 Title</p>
-          <p class="card-text">Some text that explains the person3 in about 2 short sentences</p>
-          <p>person3@example.com</p>
+          <p class="title">Jiri</p>
+          <p><strong>Dealer 2</strong></p>
+          <p class="card-text">
+            Jiri focuses on performance and value. He helps buyers compare features, mileage, and
+            long-term ownership costs before making a final decision.
+          </p>
+          <p>jiri@gmail.com</p>
         </div>
       </div>
     </div>
-    </div>
-    </div>
-    
+  </div>
 </div>
 
 </html>

@@ -3,33 +3,33 @@ import '../assets/bootstrap.min.css';
 import '../assets/style.css';
 
 const Header = () => {
-  const logout = async (e) => {
+  const logout = (e) => {
     e.preventDefault();
-    const logout_url = `${window.location.origin}/djangoapp/logout`;
-    const res = await fetch(logout_url, {
-      method: 'GET',
-    });
 
-    const json = await res.json();
-    if (json) {
-      const username = sessionStorage.getItem('username');
-      sessionStorage.removeItem('username');
-      window.location.href = window.location.origin;
-      window.location.reload();
-      alert(`Logging out ${username}...`);
-    } else {
-      alert('The user could not be logged out.');
-    }
+    sessionStorage.clear();
+
+    fetch(`${window.location.origin}/djangoapp/logout`, {
+      method: 'GET',
+      credentials: 'include',
+      keepalive: true,
+    }).finally(() => {
+      window.location.replace('/');
+    });
   };
 
-  let home_page_items = <div></div>;
-  const curr_user = sessionStorage.getItem('username');
+  const path = window.location.pathname;
+  const isHome = path === '/';
+  const isAbout = path.startsWith('/about');
+  const isContact = path.startsWith('/contact');
 
-  if (curr_user !== null && curr_user !== '') {
-    home_page_items = (
+  let homePageItems = <div></div>;
+  const currUser = sessionStorage.getItem('username');
+
+  if (currUser !== null && currUser !== '') {
+    homePageItems = (
       <div className='input_panel'>
-        <span className='username'>{sessionStorage.getItem('username')}</span>
-        <a className='nav_item' href='/djangoapp/logout' onClick={logout}>
+        <span className='username nav-username'>{currUser}</span>
+        <a className='nav_item nav-cta logout-btn' href='/' onClick={logout}>
           Logout
         </a>
       </div>
@@ -38,9 +38,9 @@ const Header = () => {
 
   return (
     <div>
-      <nav className='navbar navbar-expand-lg navbar-light' style={{ backgroundColor: 'mediumspringgreen', height: '1in' }}>
+      <nav className='navbar navbar-expand-lg navbar-dark main-navbar'>
         <div className='container-fluid'>
-          <h2 style={{ paddingRight: '5%' }}>Dealerships</h2>
+          <h2 className='brand-title'>Dealerships</h2>
           <button
             className='navbar-toggler'
             type='button'
@@ -55,24 +55,24 @@ const Header = () => {
           <div className='collapse navbar-collapse' id='navbarText'>
             <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
               <li className='nav-item'>
-                <a className='nav-link active' style={{ fontSize: 'larger' }} aria-current='page' href='/'>
+                <a className={`nav-link main-nav-link ${isHome ? 'active' : ''}`} aria-current='page' href='/'>
                   Home
                 </a>
               </li>
               <li className='nav-item'>
-                <a className='nav-link' style={{ fontSize: 'larger' }} href='/about'>
+                <a className={`nav-link main-nav-link ${isAbout ? 'active' : ''}`} href='/about'>
                   About Us
                 </a>
               </li>
               <li className='nav-item'>
-                <a className='nav-link' style={{ fontSize: 'larger' }} href='/contact'>
+                <a className={`nav-link main-nav-link ${isContact ? 'active' : ''}`} href='/contact'>
                   Contact Us
                 </a>
               </li>
             </ul>
             <span className='navbar-text'>
               <div className='loginlink' id='loginlogout'>
-                {home_page_items}
+                {homePageItems}
               </div>
             </span>
           </div>

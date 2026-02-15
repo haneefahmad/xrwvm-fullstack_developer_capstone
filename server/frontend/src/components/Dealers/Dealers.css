@@ -1,89 +1,415 @@
-table{
-    margin:5px;
-    padding:10px;
-    border: grey solid 1px;
-    width:100%
-  }
-  
-  td{
-    padding:10px;
-    align-self: center;
-    border:solid grey .5px;
-    text-align: center;
-    font-size: large;
-  }
-  
-  .review_panel{
-    display: flex;
-    flex-direction: column;
-    border: solid purple;
-    position: relative;
-    height:7cm;
-    width:6cm;
-    overflow-y: scroll;
-    padding:.3cm;
-    padding-top: 0%;
-    border-radius:10px; 
-    box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.5);
-    margin-bottom: .5cm;
-    justify-content: space-between;
-  }
+.table {
+  margin: 18px auto;
+  border: 1px solid #2b3a52;
+  width: calc(100% - 36px);
+  border-collapse: collapse;
+  background: #111827;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.45);
+}
 
-  .postreview{
-    margin:20px;
-    padding:10px;
-    font-size: larger;
-  }
+.table td {
+  padding: 12px 10px;
+  border: 1px solid #2b3a52;
+  text-align: center;
+  font-size: 1rem;
+  color: #dbe2ee;
+  vertical-align: middle;
+}
 
-  th{
-    padding:5px;
-    align-self: center;
-    text-align: center;
-    font-size: large;
-    margin-bottom: 1cm;
-    vertical-align: middle;
-    color: black;
-  }
+.table th {
+  padding: 12px 10px;
+  text-align: center;
+  font-size: 1rem;
+  color: #f1f5f9;
+  background: #1f2937;
+  border: 1px solid #2b3a52;
+  font-weight: 700;
+}
 
-  .reviews_panel {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    column-gap: 1cm;
-    overflow-wrap: normal;
-    margin-top: 1cm;
-    align-items: flex-start;
-  }
+.table a {
+  color: #7dd3fc;
+  text-decoration: none;
+  font-weight: 600;
+}
 
-  .reviewer {
-    margin: 10px;
-    font-style: italic;
-    color: gray;
-    font-size: 18px;
-    text-align: center;
+.table a:hover {
+  text-decoration: underline;
+}
+
+.state-search {
+  width: 180px;
+  max-width: 100%;
+  border: 1px solid #3b4f6f;
+  border-radius: 9px;
+  padding: 7px 10px;
+  outline: none;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.state-search:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+.review_panel {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 300px;
+  width: 280px;
+  overflow-y: auto;
+  padding: 16px 14px 14px 14px;
+  border: 2px solid #334155;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(2, 6, 23, 0.5);
+  margin-bottom: 16px;
+  background: #111827;
+  gap: 14px;
+}
+
+.postreview {
+  margin-top: 24px;
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid #3b82f6;
+  background: #1e3a8a;
+  color: #eff6ff;
+}
+
+.postreview:hover {
+  background: #1d4ed8;
+}
+
+.reviews_panel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 20px;
+  align-items: flex-start;
+}
+
+.reviewer {
+  margin-top: auto;
+  margin-bottom: 0;
+  font-style: italic;
+  color: #94a3b8;
+  font-size: 18px;
+  text-align: center;
 }
 
 .review {
-  margin-top: 1.5cm;
+  margin-top: 44px;
+  color: #dbe2ee;
+  line-height: 1.45;
 }
 
 .emotion_icon {
-  align-self: center;
-  position:fixed;
-    width:40px;
-    height:40px;
-    background-color:#0C9;
-    color:#FFF;
-    border-radius:50px;
-    text-align:center;
-    box-shadow: 2px 2px 3px #999;  
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(2, 6, 23, 0.5);
 }
 
 .review_icon {
-  width:40px;
+  width: 40px;
+  border-radius: 8px;
+  transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
 .review_icon:hover {
-  transform: scale(1.1);
-  border: 2px solid #080808;
+  transform: scale(1.08);
+  border: 2px solid #93c5fd;
+}
+
+.page-shell {
+  margin: 20px;
+}
+
+.dealer-header {
+  margin-top: 10px;
+}
+
+.dealer-title {
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.dealer-subtitle {
+  color: #94a3b8;
+  margin-top: 6px;
+}
+
+.search-link {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid #60a5fa;
+  color: #dbeafe;
+  background: #1e3a8a;
+  font-weight: 600;
+}
+
+.search-link:hover {
+  background: #1d4ed8;
+}
+
+.post-review-page {
+  margin: 20px auto;
+  max-width: 780px;
+  padding: 22px;
+  border: 1px solid #2b3a52;
+  border-radius: 14px;
+  background: #111827;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.45);
+}
+
+.post-review-page h1 {
+  color: #f8fafc;
+  margin-bottom: 14px;
+}
+
+.review-textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #3b4f6f;
+  padding: 12px;
+  outline: none;
+  resize: vertical;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.review-textarea:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+.review-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 14px;
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.review-field input,
+.review-field select {
+  border: 1px solid #3b4f6f;
+  border-radius: 9px;
+  height: 40px;
+  padding: 0 10px;
+  font-weight: 400;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.searchcars-shell {
+  margin: 24px auto;
+  max-width: 1320px;
+  padding: 0 16px;
+}
+
+.searchcars-title {
+  color: #f8fafc;
+  margin-bottom: 18px;
+  font-size: clamp(1.9rem, 2.8vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  line-height: 1.1;
+}
+
+.search-controls {
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  border: 1px solid #2b3a52;
+  background: linear-gradient(180deg, #111827 0%, #1b2436 100%);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.45);
+}
+
+.search-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #cbd5e1;
+  font-weight: 600;
+  min-width: 130px;
+}
+
+.search-controls select {
+  border: 1px solid #3b4f6f;
+  border-radius: 9px;
+  height: 38px;
+  padding: 0 10px;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.search-controls button {
+  border: 1px solid #60a5fa;
+  border-radius: 9px;
+  background: #1e3a8a;
+  color: #eff6ff;
+  padding: 8px 12px;
+  font-weight: 600;
+}
+
+.search-controls button:hover {
+  background: #1d4ed8;
+}
+
+.cars-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.car-card {
+  border: 1px solid #2b3a52;
+  border-radius: 14px;
+  padding: 16px;
+  background: #111827;
+  box-shadow: 0 10px 20px rgba(2, 6, 23, 0.4);
+}
+
+.car-card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  color: #e5e7eb;
+}
+
+.car-card p {
+  margin-bottom: 6px;
+  color: #94a3b8;
+}
+
+.search-message {
+  margin: 12px 0;
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+  .table {
+    width: calc(100% - 20px);
+  }
+
+  .page-shell,
+  .searchcars-shell {
+    margin: 14px;
+  }
+
+  .review_panel {
+    width: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .table {
+    width: calc(100% - 10px);
+    margin: 8px auto;
+    font-size: 0.92rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px 6px;
+  }
+
+  .state-search {
+    width: 130px;
+  }
+
+  .searchcars-shell,
+  .page-shell,
+  .post-review-page {
+    margin: 10px;
+    padding: 14px;
+  }
+
+  .dealer-title {
+    font-size: 1.8rem;
+  }
+
+  .dealer-subtitle {
+    font-size: 1rem;
+  }
+
+  .search-controls {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .search-controls label {
+    min-width: 45%;
+    flex: 1;
+  }
+
+  .search-controls button {
+    width: 100%;
+  }
+
+  .cars-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .search-controls label {
+    min-width: 100%;
+  }
+
+  .dealer-title {
+    font-size: 1.45rem;
+  }
+
+  .review_panel {
+    width: 100%;
+    min-height: 240px;
+  }
+}
+
+/* Dark date input with white calendar icon */
+.review-field input[type='date'] {
+  color-scheme: dark;
+  background: #0f172a;
+  color: #e2e8f0;
+  border: 1px solid #3b4f6f;
+}
+
+.review-field input[type='date']:focus {
+  outline: none;
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+.review-field input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(1.5);
+  cursor: pointer;
 }

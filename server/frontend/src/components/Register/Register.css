@@ -1,65 +1,93 @@
-.register_container{
+.register_container {
   display: flex;
   flex-direction: column;
-  margin: auto;
-  margin-top: 2%;
-  background-color: darkturquoise;
-  min-width: 350px;
-  width: 30%;
+  margin: 30px auto;
+  background: linear-gradient(180deg, #1b2436 0%, #111827 100%);
+  width: min(92%, 560px);
+  border: 1px solid #2b3a52;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.45);
+  padding: 18px;
+  color: #e2e8f0;
 }
 
-.inputs{
+.register_header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 8px;
 }
 
-.input{
-  display: flex;
-  flex-direction:row;
-  align-items: center;
+.register_title {
+  font: 700 2rem 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #f8fafc;
 }
 
-.input_field{
-  height:40px;
-  width:200px;
-  margin:.5cm;
-  font-size: medium;
-}
-
-.submit_panel{
-  display: flex;
-  flex-direction:column;
-  margin-top: 5%;
-  margin-bottom: 5%;
-}
-
-.submit{
-  margin-left: 30%;
-  margin-right: 30%;
-  cursor: pointer;
-  font-size: large;
-  color: rgb(97, 64, 128);
+.close_btn {
+  border: 1px solid #60a5fa;
+  background: #1e3a8a;
+  color: #eff6ff;
   border-radius: 10px;
-  height:50px;
+  height: 36px;
+  width: 36px;
+  cursor: pointer;
+}
+
+.close_btn:hover {
+  background: #1d4ed8;
+}
+
+.register_form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.register_field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.register_field label {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.input_field {
+  height: 42px;
+  width: 100%;
+  font-size: 0.98rem;
+  border: 1px solid #3b4f6f;
+  border-radius: 9px;
+  padding: 0 12px;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.input_field:focus {
+  outline: none;
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+.submit_panel {
+  display: flex;
+  margin-top: 8px;
+}
+
+.submit {
+  cursor: pointer;
+  font-size: 1rem;
+  color: #eff6ff;
+  border-radius: 10px;
+  height: 44px;
+  border: 1px solid #60a5fa;
+  background: #1e3a8a;
+  padding: 0 1.1rem;
 }
 
 .submit:hover {
-  background-color: wheat;
-}
-
-.header{
-  font: 4em sans-serif;
-  color: white;
-  margin: .5cm;
-}
-
-.img_icon{
-  width:40px;
-  margin:.1cm;
-  background-color:#0C9;
-  color:#FFF;
-  border-radius:50px;
-  text-align:center;
-  box-shadow: 2px 2px 3px #999;  
+  background-color: #1d4ed8;
 }
