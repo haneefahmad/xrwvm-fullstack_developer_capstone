@@ -11,10 +11,27 @@ sentiment_analyzer_url = os.getenv(
     'sentiment_analyzer_url',
     default='http://localhost:5050/',
 )
+searchcars_url = os.getenv(
+    'searchcars_url',
+    default='http://localhost:3050/',
+)
 
 
 def get_request(endpoint, **kwargs):
     request_url = f"{backend_url}{endpoint}"
+    print(f"GET from {request_url}")
+    try:
+        response = requests.get(request_url, params=kwargs if kwargs else None, timeout=15)
+        response.raise_for_status()
+        return response.json()
+    except Exception as err:
+        print(f"Unexpected {err=}, {type(err)=}")
+        print('Network exception occurred')
+        return []
+
+
+def searchcars_request(endpoint, **kwargs):
+    request_url = f"{searchcars_url}{endpoint}"
     print(f"GET from {request_url}")
     try:
         response = requests.get(request_url, params=kwargs if kwargs else None, timeout=15)

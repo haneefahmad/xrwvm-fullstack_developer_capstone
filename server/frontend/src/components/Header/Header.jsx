@@ -38,7 +38,7 @@ const Header = () => {
 
   return (
     <div>
-      <nav className='navbar navbar-expand-lg navbar-light' style={{ backgroundColor: 'darkturquoise', height: '1in' }}>
+      <nav className='navbar navbar-expand-lg navbar-light' style={{ backgroundColor: 'mediumspringgreen', height: '1in' }}>
         <div className='container-fluid'>
           <h2 style={{ paddingRight: '5%' }}>Dealerships</h2>
           <button

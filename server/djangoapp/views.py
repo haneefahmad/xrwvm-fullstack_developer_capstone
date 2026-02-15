@@ -13,7 +13,7 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from .populate import initiate
 from .models import CarMake, CarModel
-from .restapis import get_request, analyze_review_sentiments, post_review
+from .restapis import get_request, analyze_review_sentiments, post_review, searchcars_request
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -123,3 +123,29 @@ def get_cars(request):
     for car_model in car_models:
         cars.append({"CarModel": car_model.name, "CarMake": car_model.car_make.name})
     return JsonResponse({"CarModels":cars})
+
+
+def get_inventory(request, dealer_id):
+    if dealer_id:
+        make = request.GET.get('make')
+        model = request.GET.get('model')
+        mileage = request.GET.get('mileage')
+        price = request.GET.get('price')
+        year = request.GET.get('year')
+
+        if make:
+            endpoint = f"/carsbymake/{dealer_id}/{make}"
+        elif model:
+            endpoint = f"/carsbymodel/{dealer_id}/{model}"
+        elif mileage:
+            endpoint = f"/carsbymaxmileage/{dealer_id}/{mileage}"
+        elif price:
+            endpoint = f"/carsbyprice/{dealer_id}/{price}"
+        elif year:
+            endpoint = f"/carsbyyear/{dealer_id}/{year}"
+        else:
+            endpoint = f"/cars/{dealer_id}"
+
+        cars = searchcars_request(endpoint)
+        return JsonResponse({"status": 200, "cars": cars})
+    return JsonResponse({"status": 400, "message": "Bad Request"})
